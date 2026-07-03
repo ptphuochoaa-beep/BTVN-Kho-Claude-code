@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Báo cáo hiệu suất SEO — SEONGON</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --primary:#004aef;
+    --accent:#07ef9c;
+    --down:#ef4444;
+    --bg:#f5f7fb;
+    --text-dark:#0b1220;
+    --text-gray:#5b6472;
+    --border:#e3e7ef;
+    --font:'Gilroy','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text-dark);line-height:1.6;padding:32px}
+  .report{max-width:1100px;margin:0 auto}
+  header.hero{background:linear-gradient(135deg,#0028b0 0%,#0041e6 45%,#004aef 75%,#0055ff 100%);
+    color:#fff;padding:32px;border-radius:16px;margin-bottom:28px}
+  header.hero h1{font-size:24px;margin-bottom:6px}
+  header.hero p{opacity:.85;font-size:14px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+  .kpi-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
+  .kpi-card .label{font-size:13px;color:var(--text-gray);margin-bottom:6px}
+  .kpi-card .value{font-size:24px;font-weight:700}
+  .kpi-card .delta{font-size:13px;font-weight:600;margin-top:4px}
+  .delta.up{color:var(--accent)}
+  .delta.down{color:var(--down)}
+
+  section{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+  section h2{font-size:18px;margin-bottom:4px}
+  section .layer-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--primary);
+    background:rgba(0,74,239,.08);padding:2px 8px;border-radius:6px;margin-bottom:10px}
+  .chart-wrap{position:relative;height:340px;margin:16px 0}
+  .insight{background:#f5f7fb;border-left:3px solid var(--primary);padding:10px 14px;
+    border-radius:0 8px 8px 0;font-size:14px;color:var(--text-dark)}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+  th{color:var(--text-gray);font-weight:600}
+  td.num-up{color:var(--accent);font-weight:600}
+  td.num-down{color:var(--down);font-weight:600}
+</style>
+</head>
+<body>
+<div class="report">
+
+  <header class="hero">
+    <h1>Báo cáo hiệu suất SEO</h1>
+    <p><!-- Điền: tên dự án, khoảng thời gian so sánh, ngày tạo báo cáo --></p>
+  </header>
+
+  <!-- LỚP 3 — TỔNG QUAN TOÀN SITE (dựng sau cùng, số liệu tổng hợp từ Lớp 1 & 2) -->
+  <div class="kpi-grid" id="kpi-grid">
+    <!-- Lặp 1 .kpi-card cho mỗi KPI: Traffic, Từ khoá tụt/tăng, % đạt mục tiêu, Từ khoá top10 -->
+    <div class="kpi-card">
+      <div class="label">Traffic (Clicks)</div>
+      <div class="value" id="kpi-traffic-value">--</div>
+      <div class="delta" id="kpi-traffic-delta">--</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Từ khoá tụt top</div>
+      <div class="value" id="kpi-rank-down-value">--</div>
+      <div class="delta" id="kpi-rank-down-delta">--</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Từ khoá tăng top</div>
+      <div class="value" id="kpi-rank-up-value">--</div>
+      <div class="delta" id="kpi-rank-up-delta">--</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">% đạt mục tiêu traffic</div>
+      <div class="value" id="kpi-target-value">--</div>
+      <div class="delta" id="kpi-target-delta">--</div>
+    </div>
+  </div>
+
+  <section>
+    <span class="layer-tag">LỚP 3 — TỔNG QUAN</span>
+    <h2>Xu hướng traffic toàn site theo ngày</h2>
+    <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
+    <p class="insight" id="insight-trend"><!-- 1-2 câu kết luận cụ thể --></p>
+  </section>
+
+  <!-- LỚP 2 — THEO NHÓM -->
+  <section>
+    <span class="layer-tag">LỚP 2 — THEO NHÓM</span>
+    <h2>Phân bổ traffic theo nhóm chủ đề</h2>
+    <div class="chart-wrap"><canvas id="chart-topic-groups"></canvas></div>
+    <p class="insight" id="insight-topic-groups"></p>
+  </section>
+
+  <section>
+    <span class="layer-tag">LỚP 2 — THEO NHÓM</span>
+    <h2>Biến động thứ hạng theo nhóm từ khoá</h2>
+    <div class="chart-wrap"><canvas id="chart-keyword-groups"></canvas></div>
+    <p class="insight" id="insight-keyword-groups"></p>
+  </section>
+
+  <!-- LỚP 1 — CHI TIẾT URL / TỪ KHOÁ -->
+  <section>
+    <span class="layer-tag">LỚP 1 — CHI TIẾT</span>
+    <h2>Top URL biến động traffic mạnh nhất</h2>
+    <div class="chart-wrap"><canvas id="chart-top-urls"></canvas></div>
+    <p class="insight" id="insight-top-urls"></p>
+    <table id="table-urls">
+      <thead><tr><th>URL</th><th>Clicks kỳ trước</th><th>Clicks kỳ này</th><th>Δ%</th><th>Nhóm</th></tr></thead>
+      <tbody><!-- render bằng JS từ REPORT_DATA.urls --></tbody>
+    </table>
+  </section>
+
+  <section>
+    <span class="layer-tag">LỚP 1 — CHI TIẾT</span>
+    <h2>Top từ khoá biến động thứ hạng mạnh nhất</h2>
+    <div class="chart-wrap"><canvas id="chart-top-keywords"></canvas></div>
+    <p class="insight" id="insight-top-keywords"></p>
+    <table id="table-keywords">
+      <thead><tr><th>Từ khoá</th><th>Vị trí kỳ trước</th><th>Vị trí kỳ này</th><th>Δ</th><th>Nhóm</th><th>Mức độ</th></tr></thead>
+      <tbody><!-- render bằng JS từ REPORT_DATA.keywords --></tbody>
+    </table>
+  </section>
+
+</div>
+
+<script>
+/*
+  Điền dữ liệu thật vào REPORT_DATA trước khi mở file — không để mảng mẫu rỗng.
+  Dữ liệu lấy trực tiếp từ output đã tính toán của seo-rank-tracking và gsc-traffic-analysis.
+*/
+const REPORT_DATA = {
+  kpi: {
+    traffic: { value: 0, deltaPct: 0 },
+    rankDown: { value: 0, deltaPct: 0 },
+    rankUp: { value: 0, deltaPct: 0 },
+    targetPct: { value: 0, deltaPct: 0 }
+  },
+  trend: { labels: [], clicks: [] },                     // theo ngày, từ Chart.csv
+  topicGroups: { labels: [], values: [] },                // 5 nhóm chủ đề traffic
+  keywordGroups: { labels: [], down: [], up: [] },        // hotkey/volume/info/brand
+  urls: [],                                               // {url, prevClicks, currClicks, deltaPct, group}
+  keywords: []                                            // {keyword, prevPos, currPos, delta, group, severity}
+};
+
+const COLORS = { primary:'#004aef', accent:'#07ef9c', down:'#ef4444' };
+
+function fmtDelta(pct){
+  const sign = pct > 0 ? '+' : '';
+  return `${sign}${pct.toFixed(1)}%`;
+}
+function setKpi(prefix, val, deltaPct){
+  document.getElementById(`kpi-${prefix}-value`).textContent = val.toLocaleString('vi-VN');
+  const el = document.getElementById(`kpi-${prefix}-delta`);
+  el.textContent = fmtDelta(deltaPct);
+  el.className = 'delta ' + (deltaPct >= 0 ? 'up' : 'down');
+}
+
+setKpi('traffic', REPORT_DATA.kpi.traffic.value, REPORT_DATA.kpi.traffic.deltaPct);
+setKpi('rank-down', REPORT_DATA.kpi.rankDown.value, REPORT_DATA.kpi.rankDown.deltaPct);
+setKpi('rank-up', REPORT_DATA.kpi.rankUp.value, REPORT_DATA.kpi.rankUp.deltaPct);
+setKpi('target', REPORT_DATA.kpi.targetPct.value, REPORT_DATA.kpi.targetPct.deltaPct);
+
+new Chart(document.getElementById('chart-trend'), {
+  type: 'line',
+  data: { labels: REPORT_DATA.trend.labels, datasets: [{
+    label: 'Clicks', data: REPORT_DATA.trend.clicks,
+    borderColor: COLORS.primary, backgroundColor: 'rgba(0,74,239,.08)', fill: true, tension: .3
+  }]},
+  options: { responsive:true, maintainAspectRatio:false }
+});
+
+new Chart(document.getElementById('chart-topic-groups'), {
+  type: 'doughnut',
+  data: { labels: REPORT_DATA.topicGroups.labels, datasets: [{
+    data: REPORT_DATA.topicGroups.values,
+    backgroundColor: [COLORS.primary, COLORS.accent, '#7c9cf5', '#ffb020', COLORS.down]
+  }]},
+  options: { responsive:true, maintainAspectRatio:false }
+});
+
+new Chart(document.getElementById('chart-keyword-groups'), {
+  type: 'bar',
+  data: { labels: REPORT_DATA.keywordGroups.labels, datasets: [
+    { label:'Tụt top', data: REPORT_DATA.keywordGroups.down, backgroundColor: COLORS.down },
+    { label:'Tăng top', data: REPORT_DATA.keywordGroups.up, backgroundColor: COLORS.accent }
+  ]},
+  options: { responsive:true, maintainAspectRatio:false, scales:{ x:{ stacked:false } } }
+});
+
+function topDelta(arr, key){
+  return [...arr].sort((a,b)=>Math.abs(b[key])-Math.abs(a[key])).slice(0,20);
+}
+
+const topUrls = topDelta(REPORT_DATA.urls, 'deltaPct');
+new Chart(document.getElementById('chart-top-urls'), {
+  type: 'bar',
+  data: { labels: topUrls.map(u=>u.url), datasets: [{
+    label:'Δ% Clicks', data: topUrls.map(u=>u.deltaPct),
+    backgroundColor: topUrls.map(u=>u.deltaPct>=0?COLORS.accent:COLORS.down)
+  }]},
+  options: { indexAxis:'y', responsive:true, maintainAspectRatio:false }
+});
+
+const topKw = topDelta(REPORT_DATA.keywords, 'delta');
+new Chart(document.getElementById('chart-top-keywords'), {
+  type: 'bar',
+  data: { labels: topKw.map(k=>k.keyword), datasets: [{
+    label:'Δ vị trí (dương = tụt)', data: topKw.map(k=>k.delta),
+    backgroundColor: topKw.map(k=>k.delta>=0?COLORS.down:COLORS.accent)
+  }]},
+  options: { indexAxis:'y', responsive:true, maintainAspectRatio:false }
+});
+
+function renderTable(tbodySelector, rows, renderRow){
+  const tbody = document.querySelector(`${tbodySelector} tbody`);
+  tbody.innerHTML = rows.map(renderRow).join('');
+}
+renderTable('#table-urls', REPORT_DATA.urls, u => `
+  <tr><td>${u.url}</td><td>${u.prevClicks}</td><td>${u.currClicks}</td>
+  <td class="${u.deltaPct>=0?'num-up':'num-down'}">${fmtDelta(u.deltaPct)}</td><td>${u.group}</td></tr>`);
+renderTable('#table-keywords', REPORT_DATA.keywords, k => `
+  <tr><td>${k.keyword}</td><td>${k.prevPos}</td><td>${k.currPos}</td>
+  <td class="${k.delta<=0?'num-up':'num-down'}">${k.delta>0?'+':''}${k.delta}</td>
+  <td>${k.group}</td><td>${k.severity}</td></tr>`);
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Báo cáo hiệu suất SEO — Tháng 6/2026 — SEONGON</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --primary:#004aef; --accent:#07ef9c; --down:#ef4444; --warn:#f59e0b;
+    --bg:#f5f7fb; --text-dark:#0b1220; --text-gray:#5b6472; --border:#e3e7ef;
+    --font:'Gilroy','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text-dark);line-height:1.6;padding:32px}
+  .report{max-width:1100px;margin:0 auto}
+  header.hero{background:linear-gradient(135deg,#0028b0 0%,#0041e6 45%,#004aef 75%,#0055ff 100%);
+    color:#fff;padding:32px;border-radius:16px;margin-bottom:28px}
+  header.hero h1{font-size:24px;margin-bottom:6px}
+  header.hero p{opacity:.85;font-size:14px}
+  .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:28px}
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2,1fr)} }
+  .kpi-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
+  .kpi-card .label{font-size:13px;color:var(--text-gray);margin-bottom:6px}
+  .kpi-card .value{font-size:24px;font-weight:700}
+  .kpi-card .delta{font-size:13px;font-weight:600;margin-top:4px}
+  .delta.up{color:var(--accent)} .delta.down{color:var(--down)} .delta.flat{color:var(--text-gray)}
+  section{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+  section h2{font-size:18px;margin-bottom:4px}
+  .layer-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--primary);
+    background:rgba(0,74,239,.08);padding:2px 8px;border-radius:6px;margin-bottom:10px}
+  .chart-wrap{position:relative;height:340px;margin:16px 0}
+  .chart-wrap.tall{height:420px}
+  .insight{background:#f5f7fb;border-left:3px solid var(--primary);padding:10px 14px;
+    border-radius:0 8px 8px 0;font-size:14px}
+  .insight.warn{border-left-color:var(--warn);background:#fffaf0}
+  .callout{border:1px dashed var(--warn);background:#fffaf0;border-radius:10px;padding:16px;margin-top:14px}
+  .callout b{color:#92400e}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+  th{color:var(--text-gray);font-weight:600}
+  td.num-up{color:var(--accent);font-weight:600} td.num-down{color:var(--down);font-weight:600}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+  .badge.rank40{background:rgba(239,68,68,.1);color:var(--down)}
+</style>
+</head>
+<body>
+<div class="report">
+
+  <header class="hero">
+    <h1>Báo cáo hiệu suất SEO — seongon.com</h1>
+    <p>Kỳ: Tháng 6/2026 (1/6–30/6) so với Tháng 5/2026 (2/5–31/5) · Nguồn: Google Search Console + SERPUPDATE API · Tạo ngày 03/07/2026</p>
+  </header>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="label">Traffic (Clicks)</div>
+      <div class="value">16.850</div>
+      <div class="delta down">-3,63% so với T5 (17.485)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Impressions</div>
+      <div class="value">1.269.678</div>
+      <div class="delta down">-2,81% so với T5</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">CTR trung bình</div>
+      <div class="value">1,33%</div>
+      <div class="delta flat">T5: 1,34% (gần như không đổi)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Vị trí TB (theo impression)</div>
+      <div class="value">8,21</div>
+      <div class="delta down">T5: 8,10 (nhích xuống nhẹ)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">% đạt mục tiêu traffic</div>
+      <div class="value">42,1%</div>
+      <div class="delta down">Mục tiêu 40.000/30 ngày — thiếu 23.150 clicks</div>
+    </div>
+  </div>
+
+  <section>
+    <span class="layer-tag">SKILL 1 — CHECK TOP TỪ KHOÁ (SERPUPDATE)</span>
+    <h2>Tình trạng bộ 59 từ khoá dịch vụ mới</h2>
+    <div class="callout">
+      <b>⏸ Tạm dừng theo quyết định của người phụ trách (03/07/2026)</b> — dừng lại ở 2/59 từ khoá
+      đã check, không tiếp tục gọi thêm API cho đến khi có chỉ đạo mới:
+      <ul style="margin:10px 0 0 18px">
+        <li><b>"seongon"</b> (ngoài danh sách 59 từ, dùng để kiểm tra kết nối API) → hạng <b>#1</b>, đúng trang chủ.</li>
+        <li><b>"dịch vụ seo"</b> — từ khoá Hotkey, volume 33.100/tháng → hạng <b>#40</b>
+          <span class="badge rank40">ngoài top 10</span>, và trang được Google chọn là
+          <code>/blog/seo/top-cong-ty-seo.html</code> (bài blog liệt kê "Top 19 công ty SEO"),
+          <b>không phải trang dịch vụ chuyên biệt</b> → dấu hiệu nhận sai trang đích cho từ khoá
+          chuyển đổi quan trọng nhất trong bộ.</li>
+      </ul>
+    </div>
+    <p class="insight warn" style="margin-top:14px">
+      Với 2/59 từ khoá (3,4% bộ từ khoá), không đủ cơ sở để tính % top 3/5/10 tổng và theo nhóm
+      SEO/Ads — số liệu này cần toàn bộ 59 từ khoá mới đại diện được. Khi được chạy tiếp, phần này sẽ
+      trả lời đầy đủ: tổng quan % top3/5/10, chi tiết theo nhóm SEO (50 từ)/Ads (9 từ), và đối chiếu
+      trang đích cho từng từ khoá.
+    </p>
+  </section>
+
+  <section>
+    <span class="layer-tag">SKILL 2 — LỚP 3 — TỔNG QUAN</span>
+    <h2>Mức thiếu hụt so với mục tiêu traffic</h2>
+    <p class="insight">
+      Mục tiêu: <b>40.000 clicks/30 ngày</b> (≈ 1.333 clicks/ngày). Tháng 6 đạt <b>16.850 clicks</b>
+      (≈ 562 clicks/ngày) — tương đương <b>42,1%</b> mục tiêu, thiếu hụt <b>23.150 clicks</b> cho cả
+      tháng (≈ 772 clicks/ngày). Để đạt mục tiêu, trung bình ngày cần tăng gấp <b>~2,4 lần</b> mức
+      hiện tại — với traffic tổng đang giảm -3,63% so với tháng 5, khoảng cách này đang doãng ra chứ
+      chưa thu hẹp, nên các phát hiện ở nhóm Danh mục/hotkey bên dưới cần được ưu tiên xử lý sớm.
+    </p>
+  </section>
+
+  <section>
+    <span class="layer-tag">SKILL 2 — LỚP 2 — THEO NHÓM CHỦ ĐỀ</span>
+    <h2>Phân bổ & biến động traffic theo nhóm chủ đề</h2>
+    <div class="chart-wrap"><canvas id="chart-topic-doughnut"></canvas></div>
+    <div class="chart-wrap"><canvas id="chart-topic-compare"></canvas></div>
+    <p class="insight">
+      <b>Danh mục/hotkey</b> (478 URL, 39,2% traffic) giảm mạnh nhất: -7,0% clicks và
+      <b>-11,6% impressions</b> — đây là nhóm sát doanh thu nhất, cần ưu tiên điều tra trước.
+      <b>Chủ đề ngang</b> (521 URL, 45,1% traffic — nhóm lớn nhất) giảm nhẹ hơn (-2,0%), impression
+      gần như đi ngang. <b>Thương hiệu</b> là nhóm duy nhất có impressions tăng (+4,1%) dù clicks giảm nhẹ.
+    </p>
+  </section>
+
+  <section>
+    <span class="layer-tag">SKILL 2 — LỚP 1 — CHI TIẾT URL</span>
+    <h2>Top 15 URL giảm traffic mạnh nhất (Tháng 5 → Tháng 6)</h2>
+    <div class="chart-wrap tall"><canvas id="chart-decliners"></canvas></div>
+    <p class="insight">
+      <b>/blog/seo/viet-bai-chuan-seo.html</b> giảm mạnh nhất (-44,5%, 371→206 clicks), đồng thời vị
+      trí trung bình tụt từ 18,7 xuống 21,3 — traffic giảm khớp với rớt hạng. Đáng chú ý:
+      <b>/bao-gia-dich-vu-seo-tong-the</b> (trang dịch vụ, -40,5%) và
+      <b>/blog/seo/mat-do-tu-khoa.html</b> (-45,6%) đều thuộc nhóm Danh mục/hotkey và đều tụt vị trí
+      rõ rệt — cùng pattern với phát hiện "dịch vụ seo" rớt hạng #40 ở Skill 1, gợi ý nhóm nội dung
+      dịch vụ cốt lõi đang yếu đi trên diện rộng chứ không phải case đơn lẻ.
+    </p>
+    <table>
+      <thead><tr><th>URL</th><th>T5 Clicks</th><th>T6 Clicks</th><th>Δ%</th><th>Vị trí T5→T6</th><th>Nhóm</th></tr></thead>
+      <tbody id="table-decliners-body"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <span class="layer-tag">SKILL 2 — LỚP 1 — CHI TIẾT URL</span>
+    <h2>Top 10 URL tăng traffic mạnh nhất</h2>
+    <div class="chart-wrap"><canvas id="chart-gainers"></canvas></div>
+    <p class="insight">
+      <b>/blog/seo/google-tag-manager.html</b> tăng +116,5% (91→197 clicks) — mức tăng tuyệt đối lớn
+      nhất trong nhóm Danh mục/hotkey, nên rà lại nguyên nhân (backlink mới, cập nhật nội dung...) để
+      nhân rộng cách làm sang các bài dịch vụ đang giảm ở trên.
+    </p>
+  </section>
+
+  <section>
+    <span class="layer-tag">SKILL 2 — ĐỀ XUẤT MỞ RỘNG</span>
+    <h2>Cơ hội tối ưu CTR — vị trí tốt nhưng CTR bất thường thấp</h2>
+    <table>
+      <thead><tr><th>URL</th><th>Vị trí T6</th><th>CTR T6</th><th>Impressions T6</th><th>Clicks T6</th></tr></thead>
+      <tbody>
+        <tr><td>/blog/digital-marketing/content-calendar-la-gi.html</td><td>3,2</td><td>0,41%</td><td>37.766</td><td>153</td></tr>
+        <tr><td>/blog/seo/link-la-gi.html</td><td>7,0</td><td>0,16%</td><td>29.076</td><td>47</td></tr>
+        <tr><td>/blog/seo/seo-la-gi.html</td><td>7,8</td><td>0,32%</td><td>26.876</td><td>87</td></tr>
+        <tr><td>/blog/seo/backlink.html</td><td>8,5</td><td>0,31%</td><td>18.448</td><td>57</td></tr>
+        <tr><td>/blog/facebook/trinh-quan-ly-quang-cao-facebook.html</td><td>3,8</td><td>0,03%</td><td>16.960</td><td>5</td></tr>
+      </tbody>
+    </table>
+    <p class="insight warn">
+      584 trang đang ở vị trí ≤10 nhưng CTR &lt; 3% — bất thường vì vị trí này thường có CTR 5-15%.
+      Không đủ dữ liệu để khẳng định nguyên nhân (có thể do title/meta chưa hấp dẫn, hoặc vị trí
+      trung bình bị "kéo cao ảo" bởi nhiều truy vấn dài đuôi hiếm gặp, hoặc SERP feature của đối thủ
+      chiếm chỗ click) — cần kiểm tra thủ công trực tiếp trên GSC/SERP trước khi kết luận, đây chỉ là
+      danh sách ưu tiên rà soát.
+    </p>
+  </section>
+
+  <section>
+    <span class="layer-tag">GHI CHÚ GIỚI HẠN DỮ LIỆU</span>
+    <h2>Những phần chưa đủ dữ liệu để phân tích</h2>
+    <ul style="margin-left:18px;line-height:1.9">
+      <li><b>Xu hướng theo ngày / traffic ngày gần nhất:</b> file GSC không có sheet theo ngày (Chart) — không tính được.</li>
+      <li><b>Top 3/5/10 bộ từ khoá dịch vụ:</b> mới check 2/59 từ khoá — skill 1 đang tạm dừng theo quyết định của anh, chưa đủ đại diện cho cả bộ 59 từ khoá.</li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+const COLORS = { primary:'#004aef', accent:'#07ef9c', down:'#ef4444', warn:'#f59e0b', purple:'#7c9cf5' };
+
+new Chart(document.getElementById('chart-topic-doughnut'), {
+  type:'doughnut',
+  data:{ labels:['Chủ đề ngang (45,1%)','Danh mục/hotkey (39,2%)','Thương hiệu (10,2%)','Điểm mạnh website (5,2%)','Chưa phân nhóm (0,3%)'],
+    datasets:[{ data:[7642,6644,1734,888,50], backgroundColor:[COLORS.primary,COLORS.down,COLORS.accent,COLORS.purple,'#cbd5e1'] }] },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ title:{display:true,text:'Tỷ trọng Clicks Tháng 6 theo nhóm chủ đề'} } }
+});
+
+new Chart(document.getElementById('chart-topic-compare'), {
+  type:'bar',
+  data:{ labels:['Chủ đề ngang','Danh mục/hotkey','Thương hiệu','Điểm mạnh website','Chưa phân nhóm'],
+    datasets:[
+      { label:'Tháng 5', data:[7798,7143,1746,909,38], backgroundColor:'#c7d2fe' },
+      { label:'Tháng 6', data:[7642,6644,1734,888,50], backgroundColor:COLORS.primary }
+    ]},
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ title:{display:true,text:'Clicks Tháng 5 vs Tháng 6 theo nhóm'} } }
+});
+
+const decliners = [
+ {label:'/blog/seo/viet-bai-chuan-seo.html', mc:371, jc:206, deltaPct:-44.5, mpos:18.7, jpos:21.3, group:'Danh mục/hotkey'},
+ {label:'/blog/facebook/chat-luong-tai-khoan.html', mc:212, jc:138, deltaPct:-34.9, mpos:7.1, jpos:8.8, group:'Chủ đề ngang'},
+ {label:'/dao-tao/seo-aimax', mc:244, jc:176, deltaPct:-27.9, mpos:7.2, jpos:8.4, group:'Điểm mạnh website'},
+ {label:'/bao-gia-dich-vu-seo-tong-the', mc:158, jc:94, deltaPct:-40.5, mpos:16.3, jpos:17.0, group:'Danh mục/hotkey'},
+ {label:'/blog/ai/generative-engine-optimization.html', mc:177, jc:129, deltaPct:-27.1, mpos:4.8, jpos:4.7, group:'Chủ đề ngang'},
+ {label:'/blog/seo/mau-bai-viet-chuan-seo.html', mc:416, jc:372, deltaPct:-10.6, mpos:8.9, jpos:6.9, group:'Danh mục/hotkey'},
+ {label:'/blog/facebook/check-content-vi-pham-facebook.html', mc:192, jc:152, deltaPct:-20.8, mpos:6.2, jpos:6.0, group:'Chủ đề ngang'},
+ {label:'/blog/seo/huong-dan-su-dung-looker-studio.html', mc:127, jc:87, deltaPct:-31.5, mpos:5.4, jpos:6.0, group:'Danh mục/hotkey'},
+ {label:'/blog/google-ads/ke-hoach-quang-cao-google-ads.html', mc:74, jc:35, deltaPct:-52.7, mpos:9.5, jpos:11.8, group:'Chủ đề ngang'},
+ {label:'/blog/digital-marketing/lich-su-thuong-mai-dien-tu-o-vn.html', mc:63, jc:26, deltaPct:-58.7, mpos:5.0, jpos:5.0, group:'Chủ đề ngang'},
+ {label:'/blog/seo/cong-cu-nghien-cuu-tu-khoa.html', mc:351, jc:315, deltaPct:-10.3, mpos:11.3, jpos:11.9, group:'Danh mục/hotkey'},
+ {label:'/blog/seo/mat-do-tu-khoa.html', mc:79, jc:43, deltaPct:-45.6, mpos:12.2, jpos:17.8, group:'Danh mục/hotkey'},
+ {label:'/blog/seo/seo-onpage.html', mc:116, jc:84, deltaPct:-27.6, mpos:8.8, jpos:6.8, group:'Danh mục/hotkey'},
+ {label:'/blog/facebook/cach-tao-fanpage-doanh-nghiep.html', mc:127, jc:97, deltaPct:-23.6, mpos:9.0, jpos:8.5, group:'Chủ đề ngang'},
+ {label:'/ (trang chủ)', mc:1453, jc:1424, deltaPct:-2.0, mpos:5.8, jpos:8.4, group:'Thương hiệu'}
+];
+new Chart(document.getElementById('chart-decliners'), {
+  type:'bar',
+  data:{ labels:decliners.map(d=>d.label), datasets:[{ label:'Δ% Clicks', data:decliners.map(d=>d.deltaPct), backgroundColor:COLORS.down }]},
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false }
+});
+document.getElementById('table-decliners-body').innerHTML = decliners.map(d=>`
+  <tr><td>${d.label}</td><td>${d.mc}</td><td>${d.jc}</td>
+  <td class="num-down">${d.deltaPct}%</td><td>${d.mpos} → ${d.jpos}</td><td>${d.group}</td></tr>`).join('');
+
+const gainers = [
+ {label:'/blog/seo/google-tag-manager.html', mc:91, jc:197, deltaPct:116.5, group:'Danh mục/hotkey'},
+ {label:'/blog/tiktok/chu-de-xay-kenh-tiktok.html', mc:285, jc:358, deltaPct:25.6, group:'Chủ đề ngang'},
+ {label:'/blog/digital-marketing/carousel-la-gi.html', mc:57, jc:120, deltaPct:110.5, group:'Chủ đề ngang'},
+ {label:'/dao-tao', mc:467, jc:526, deltaPct:12.6, group:'Điểm mạnh website'},
+ {label:'/blog/google-ads/quang-cao-youtube.html', mc:170, jc:218, deltaPct:28.2, group:'Chủ đề ngang'},
+ {label:'/blog/seo/sapo-la-gi.html', mc:158, jc:206, deltaPct:30.4, group:'Danh mục/hotkey'},
+ {label:'/blog/digital-marketing/mau-ke-hoach-content-marketing.html', mc:38, jc:84, deltaPct:121.1, group:'Chủ đề ngang'},
+ {label:'/blog/facebook/viral-content-facebook.html', mc:20, jc:62, deltaPct:210.0, group:'Chủ đề ngang'},
+ {label:'/blog/digital-marketing/cach-lam-youtube.html', mc:272, jc:306, deltaPct:12.5, group:'Chủ đề ngang'},
+ {label:'/blog/seo/internal-link.html', mc:44, jc:78, deltaPct:77.3, group:'Danh mục/hotkey'}
+];
+new Chart(document.getElementById('chart-gainers'), {
+  type:'bar',
+  data:{ labels:gainers.map(d=>d.label), datasets:[{ label:'Δ% Clicks', data:gainers.map(d=>d.deltaPct), backgroundColor:COLORS.accent }]},
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false }
+});
+</script>
+</body>
+</html>

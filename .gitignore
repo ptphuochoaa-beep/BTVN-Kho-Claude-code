@@ -1,0 +1,8 @@
+.DS_Store
+
+# Dữ liệu thô của dự án (traffic, từ khoá thật của khách hàng) — không đẩy lên GitHub
+*.xlsx
+dữ liệu 1 kỳ/
+
+# Session/conversation export transcripts
+2026-*-command-message*.txt
